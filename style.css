@@ -15,6 +15,16 @@ body {
 	display: none;
 }
 
+.title {
+    line-height: 1.67;
+    text-align: center;
+    color: #35465d;
+}
+.title h1 {
+	font-family : 'Jua', sans-serif;
+	color : #35465d;
+}
+
 .file-upload {
   background-color: #ffffff;
   width: 600px;
