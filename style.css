@@ -24,6 +24,7 @@ body {
     font-family : 'Jua', sans-serif;
 }
 .title-text h1 {
+    font-size: 2rem;
 }
 .title-text h1 span {
 	color : #ff9a00;
