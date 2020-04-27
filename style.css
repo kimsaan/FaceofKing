@@ -15,14 +15,21 @@ body {
 	display: none;
 }
 
-.title {
+.title-text {
     line-height: 1.67;
     text-align: center;
     color: #35465d;
+    font-size: 2.5rem;
+    font-weight: 500;
 }
-.title h1 {
+.title-text h1 {
 	font-family : 'Jua', sans-serif;
 	color : #35465d;
+}
+.title-text h2 {
+	font-family : 'Jua', sans-serif;
+	color : #ff9a00;
+	font-size: 3rem;
 }
 
 .file-upload {
