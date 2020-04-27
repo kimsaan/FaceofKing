@@ -173,9 +173,7 @@
 					$('#loader').removeClass('display-show');
 					$('#loader').addClass('display-none');
 					$('#imgking').addClass('display-none');
-					
-					var offset = $("#card).offset();
-       					$('html, body').animate({scrollTop : offset.top}, 400);				
+       					$('html, body').animate({scrollTop : $("#card).offset().top}, 400);				
 				},2000);
                 
         }
