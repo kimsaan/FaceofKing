@@ -52,7 +52,7 @@
 	<div class="title-text">
 		<h1><span>AI로 알아보는</span></br>'내가 왕이 될 상인가?'</br> 나는 조선의 어떤 왕이었을까?</h1>
 	</div>
-	<img id="imgking" src="king.gif" style="width:592px;" />
+	<img id="imgking" src="images/king.gif" style="width:592px;" />
         <div class="image-upload-wrap">
             <input class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*" />
             <div class="drag-text">
@@ -98,7 +98,9 @@
         // More API functions here:
         // https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/image
         // the link to your model provided by Teachable Machine export panel
-        const URL = "https://teachablemachine.withgoogle.com/models/9ek7QpCw0/";
+		
+        const URL = "https://teachablemachine.withgoogle.com/models/RpHnksbrN/";
+		
         let model, webcam, labelContainer, maxPredictions;
         // Load the image model and setup the webcam
         async function init() {
@@ -126,11 +128,14 @@
 			/*$( 'section' ).addClass( 'bar-graph bar-graph-horizontal bar-graph-one' );
 			$( 'section' ).attr("id", "result-container");
 			labelContainer = document.getElementById( 'result-container' );*/
+			
             for (let i = 0; i < maxPredictions; i++) { // and class labels
-				var new_row = document.createElement("div")
+				var new_row = document.createElement("div");
 				//new_row.className = 'bar-one';
-                labelContainer.appendChild(new_row);
+                labelContainer.appendChild(document.createElement("div"));
             }
+			
+			predict();
         }
         /*async function loop() {
             webcam.update(); // update the webcam frame
@@ -138,32 +143,28 @@
             window.requestAnimationFrame(loop);
         }*/
         // run the webcam image through the image model
+		
         async function predict() {
-            // predict can take in an image, video or canvas html element
-            //const prediction = await model.predict(webcam.canvas);
 			
-			var image = document.getElementById("face-id")
+			var image = document.getElementById("face-id");
 			const prediction = await model.predict(image, false);
 			
 			var MaxVal = 0;
-			var MaxName = "";
 			var SelectedKing = 0;
 			
             for (let i = 0; i < maxPredictions; i++) {
 				
-				var pred = prediction[i].probability.toFixed(2) * 100;
+				var pred = prediction[i].probability.toFixed(2);
 				if(MaxVal == 0) MaxVal = pred;
-				if(MaxVal < pred){
-					MaxVal = pred.toFixed(0);
-					MaxName = prediction[i].className;
-					SelectedKing = i;
+				if(MaxVal <= pred){
+					MaxVal = pred;
+					SelectedKing = i;	
 				}
 				
-				/*
-                const classPrediction =
-                   prediction[i].className + ": " + prediction[i].probability.toFixed(2) * 100 + "%";
-                labelContainer.childNodes[i].innerHTML = classPrediction;
-				*/
+			   /*const classPrediction =
+				   prediction[i].className + ": " + prediction[i].probability.toFixed(2) + "%("+SelectedKing+")";
+				labelContainer.childNodes[i].innerHTML = classPrediction;*/
+				
             }
 			
 			const classPrediction =
@@ -189,20 +190,26 @@
 					"</div> <div class='card_right__button'>"
 					+ kings[SelectedKing].copyrights +
 					"</div>	</div> </div> </div>";
-				   
+				 /*  
 				setTimeout(function(){
 					labelContainer.childNodes[0].innerHTML = classPrediction;
 			
 					$('#loader').removeClass('display-show');
 					$('#loader').addClass('display-none');
 					$('#imgking').addClass('display-none');
-				},2000);
-                
+				},2000);*/
+			
+					$('#loader').removeClass('display-show');
+					$('#loader').addClass('display-none');
+					$('#imgking').addClass('display-none');
+			
+			labelContainer.childNodes[0].innerHTML = classPrediction;
+             
         }
     </script>
 
     <script>
-        function readURL(input) {
+        function readURL(input) {	
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
                 reader.onload = function(e) {
@@ -216,8 +223,8 @@
 					$('#loader').removeClass('display-none');
 					$('#loader').addClass('display-show');
 					
-					predict();
 					
+					init();					
                 };
                 reader.readAsDataURL(input.files[0]);
 				
@@ -240,9 +247,6 @@
         });
     </script>
 	<script src="image-link.js"></script>
-	<script>
-		init();
-	</script>
 	
 	<ins class="kakao_ad_area" style="display:none;" 
 	 data-ad-unit    = "DAN-vb9mw3dkk2eq" 
