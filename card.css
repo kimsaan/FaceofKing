@@ -4,6 +4,7 @@
 	 width: 98%;
 	 height: 100vh;
 }
+.label-container { margin-bottom: 50px; }
  body .card {
 	 width: 800px;
 	 height: 400px;
