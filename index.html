@@ -104,6 +104,9 @@
         let model, webcam, labelContainer, maxPredictions;
         // Load the image model and setup the webcam
         async function init() {
+		$('#imgking').addClass('display-none');
+		
+		
             const modelURL = URL + "model.json";
             const metadataURL = URL + "metadata.json";
             // load the model and metadata
@@ -145,7 +148,6 @@
         // run the webcam image through the image model
 		
         async function predict() {
-		$('#imgking').addClass('display-none');
 		var image = document.getElementById("face-id");
 		const prediction = await model.predict(image, false);
 
