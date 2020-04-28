@@ -198,7 +198,7 @@
 			
 					$('#loader').removeClass('display-show');
 					$('#loader').addClass('display-none');
-					$('#imgking').addClass('display-none');
+					
 			
 			labelContainer.childNodes[0].innerHTML = classPrediction;
              
@@ -207,6 +207,7 @@
 
     <script>
         function readURL(input) {	
+		$('#imgking').addClass('display-none');
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
                 reader.onload = function(e) {
