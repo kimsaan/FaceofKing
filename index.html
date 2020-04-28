@@ -145,13 +145,13 @@
         // run the webcam image through the image model
 		
         async function predict() {
-			
-			var image = document.getElementById("face-id");
-			const prediction = await model.predict(image, false);
-			
-			var MaxVal = 0;
-			var SelectedKing = 0;
-			
+		$('#imgking').addClass('display-none');
+		var image = document.getElementById("face-id");
+		const prediction = await model.predict(image, false);
+
+		var MaxVal = 0;
+		var SelectedKing = 0;
+
             for (let i = 0; i < maxPredictions; i++) {
 				
 				var pred = prediction[i].probability.toFixed(2);
@@ -207,7 +207,6 @@
 
     <script>
         function readURL(input) {	
-		$('#imgking').addClass('display-none');
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
                 reader.onload = function(e) {
